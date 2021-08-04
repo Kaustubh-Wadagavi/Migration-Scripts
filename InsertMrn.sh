@@ -24,8 +24,9 @@ do
 	    values (
 		 $NEW_MRN_VALUE,
 		 $SITE_NAME,
-	         $PARTICIPANT_ID)
+	         $PARTICIPANT_ID
+	    )
 	EOF
     fi
 done < <(tail -n +2 $INPUT_FILE)
-IFS=$OLDIFSi
+IFS=$OLDIFS
