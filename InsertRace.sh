@@ -9,7 +9,7 @@ INPUT_FILE=race.csv
 OLDIFS=$IFS
 IFS=','
 [ ! -f $INPUT_FILE ] && { echo "$INPUT_FILE file not found"; exit 99; }
-while read PART_SOURCE_ID PART_SOURCE RACE_VALUE
+while read PART_SOURCE_ID PART_SOURCE RACE_VALUE DATA_EXTRACT_DATE
 do
     PARTICIPANT_ID=$(mysql os_test -uos-test -p'Login@123' -se "SELECT IDENTIFIER FROM os_staged_participants where EMPI_ID=$PART_SOURCE_ID")
 
@@ -22,9 +22,9 @@ do
             )
             values (
               $RACE_VALUE,
-	      $PARTICIPANT_ID,
+	      $PARTICIPANT_ID
 	    )
-        EOF
+	EOF
     fi
 done < <(tail -n +2 $INPUT_FILE)
 IFS=$OLDIFSi
