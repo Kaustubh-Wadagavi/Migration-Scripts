@@ -14,7 +14,7 @@ do
 	if [ -z "$DEATH_DATE" ]
 	then
 	    DEATH_DATE=null;
-	    mysql -uos-test -p'Login@123' -Dos_test << EOF
+	    mysql -uos-test -p'Login@123' -Dos_test <<-EOF
 	    INSERT INTO os_staged_participants (
 		 EMPI_ID,
 		 SOURCE,
@@ -43,9 +43,9 @@ do
 		$ACTIVITY_STATUS,
 		STR_TO_DATE('$UPDATED_TIME', '%d-%b-%Y')
  		)
-EOF
+	EOF
 	else 
-	   mysql -uos-test -p'Login@123' -Dos_test << EOF
+	   mysql -uos-test -p'Login@123' -Dos_test <<-EOF
            INSERT INTO os_staged_participants (
                  EMPI_ID,
                  SOURCE,
@@ -72,7 +72,7 @@ EOF
                 $ACTIVITY_STATUS,
                 STR_TO_DATE('$UPDATED_TIME','%d-%b-%Y')
                 )
-EOF
+	EOF
 	fi
 done < <(tail -n +2 $INPUT_FILE)
 IFS=$OLDIFS
